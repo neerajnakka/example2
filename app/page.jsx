@@ -106,9 +106,6 @@ function NavLink({ href, label, isActive }) {
 function Hero() {
   return (
     <section className="text-center max-w-4xl mx-auto mb-20 animate-fade-slide-up">
-      <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold bg-purple-700/30 text-purple-300 rounded-full border border-purple-700/50 tracking-wide select-none">
-        DevOps-Ready Next.js Template
-      </span>
       <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
         Ship Fast.{' '}
         <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -127,7 +124,7 @@ function Hero() {
           Get Started
         </button>
         <a
-          href="https://github.com/your-repo"
+          href="https://github.com/neerajnakka/nextjs-docker-kubernetes"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-secondary focus-visible:ring-4 focus-visible:ring-purple-400 px-8 py-3"
