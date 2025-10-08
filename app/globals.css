@@ -1,6 +1,5 @@
-/* app/globals.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import 'tailwindcss';
 
 :root {
   --color-bg-dark: 17, 24, 39; /* Tailwind slate-900 */
