@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: nextjs
-          image: ghcr.io/neerajnakka/nextjs-app:main # ← Must match your GHCR URL
+          image: ghcr.io/neerajnakka/nextjs-app:main 
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
