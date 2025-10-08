@@ -13,6 +13,10 @@ COPY . .
 # Build app
 RUN npm run build
 
+# Remove dev dependencies 
+RUN npm prune --production
+
+
 # Stage 2: Production runtime
 FROM node:18-alpine AS runner
 
