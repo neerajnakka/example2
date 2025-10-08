@@ -12,7 +12,7 @@ jobs:
       packages: write
 
     steps:
-      # Step 1: Checkout code
+      # Step 1: Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -26,23 +26,25 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_PAT }}
+          password: ${{ secrets.GHCR_PAT }}   # Your classic PAT with write:packages scope
 
-      # Step 4: Generate image metadata with auto tags
+      # Step 4: Generate image metadata (SHA & branch tags)
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository_owner }}/nextjs-app
           tags: |
-            type=ref,event=branch        
-            type=sha                      
-            type=ref,event=branch,format=latest 
-      # Step 5: Build and push Docker image
+            type=sha
+            type=ref,event=branch
+
+      # Step 5: Build and push Docker image with explicit latest
       - name: Build and Push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            ghcr.io/${{ github.repository_owner }}/nextjs-app:latest
           labels: ${{ steps.meta.outputs.labels }}
