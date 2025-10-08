@@ -1,6 +1,6 @@
-# 🚀 Next.js DevOps Assessment - Complete Guide
+# 🚀 Next.js DevOps Project - Complete Guide
 
-## 📋 What You'll Learn
+## 📋 What You'll Know
 
 This guide walks through the complete DevOps pipeline I built for containerizing and deploying a Next.js application. No code dumps - just clear explanations of what each component does and how to use them.
 
@@ -171,4 +171,4 @@ kubectl top pods
 3. **Get Access URL**: `minikube service nextjs-service --url`
 4. **Monitor**: `kubectl get pods -l app=nextjs`
 
-Your Next.js application is now running in a production-like Kubernetes environment with automated deployments, health monitoring, and proper resource management!
+This Next.js application is now running in a production-like Kubernetes environment with automated deployments, health monitoring, and proper resource management!
