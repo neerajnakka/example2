@@ -1,43 +1,36 @@
-# Multi-stage build for Next.js 
-
-#stage 1
+# Stage 1: Build
 FROM node:18-alpine AS builder
 
 WORKDIR /app
 
 
 COPY package*.json ./
+RUN npm ci
 
-
-RUN npm ci --only=production
-
-
+# Copy source
 COPY . .
 
-# Build 
+# Build app
 RUN npm run build
 
-# Stage 2
+# Stage 2: Production runtime
 FROM node:18-alpine AS runner
 
-# Create a non-root user to run the application
+# Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nextjs -u 1001
 
 USER nextjs
-
 WORKDIR /app
 
-
+# Copy production dependencies
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/package*.json ./
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules  # ← REQUIRED for `next start`
-
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 
 EXPOSE 3000
 
-# env
 ENV NODE_ENV=production
 ENV PORT=3000
 
